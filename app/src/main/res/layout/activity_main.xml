@@ -1,50 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#9ad3d5"
+    android:orientation="vertical"
+    android:weightSum="1"
     tools:context="st.mape.jobs.MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="286dp"
-        android:layout_gravity="fill_vertical"
-        android:src="@drawable/jobs1" />
+    <TextView
+        android:id="@+id/nameView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.36"
+        android:gravity="center_vertical|center"
+        android:textSize="48dp"
+        android:text="Jobs"
+        android:textColor="#47525E" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_height="0dp"
+        android:layout_weight="0.65"
         android:orientation="vertical"
         android:weightSum="1">
 
         <EditText
-            android:id="@+id/editText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="e-Mail"
-            android:textAlignment="center"
+            android:id="@+id/mailView"
+            android:layout_width="359dp"
+            android:layout_height="63dp"
             android:ems="10"
+            android:text="Usuário ou e-Mail"
+            android:background="#FFFAFA"
+            android:layout_gravity="center"
+            android:layout_marginBottom="6dp"
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/editText2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/passView"
+            android:layout_width="359dp"
+            android:layout_height="63dp"
             android:ems="10"
+            android:text="Senha"
+            android:background="#FFFAFA"
+            android:layout_gravity="center"
+            android:layout_marginBottom="24dp"
             android:inputType="textPassword" />
 
         <Button
-            android:id="@+id/button3"
-            android:layout_width="114dp"
+            android:id="@+id/enterBT"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             android:text="ENTRAR" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/fbBT"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/gBT"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="77dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/cadView"
+            android:layout_width="155dp"
+            android:layout_height="wrap_content"
+            android:text="Ainda não cadastrado?"
+            android:textColor="#47525E"
+            android:layout_gravity="center_vertical|center"/>
+
+        <TextView
+            android:id="@+id/cadView2"
+            android:layout_width="91dp"
+            android:layout_height="wrap_content"
+            android:text="Cadastre-se"
+            android:textColor="#1E90FF"
+            android:layout_gravity="center_vertical|center"/>
     </LinearLayout>
 
 </LinearLayout>
