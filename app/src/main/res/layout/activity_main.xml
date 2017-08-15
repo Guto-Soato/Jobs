@@ -10,14 +10,14 @@
     tools:context="st.mape.jobs.MainActivity">
 
     <TextView
-        android:id="@+id/nameView"
+        android:id="@+id/txtName"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.36"
         android:gravity="center_vertical|center"
-        android:textSize="48dp"
         android:text="Jobs"
-        android:textColor="#47525E" />
+        android:textColor="#47525E"
+        android:textSize="48dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,29 +27,29 @@
         android:weightSum="1">
 
         <EditText
-            android:id="@+id/mailView"
+            android:id="@+id/txtMail"
             android:layout_width="359dp"
             android:layout_height="63dp"
-            android:ems="10"
-            android:text="Usuário ou e-mail"
-            android:background="#FFFAFA"
             android:layout_gravity="center"
             android:layout_marginBottom="6dp"
-            android:inputType="textEmailAddress" />
+            android:background="#FFFAFA"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:text="Usuário ou e-mail" />
 
         <EditText
-            android:id="@+id/passView"
+            android:id="@+id/txtPass"
             android:layout_width="359dp"
             android:layout_height="63dp"
-            android:ems="10"
-            android:text="password"
-            android:background="#FFFAFA"
             android:layout_gravity="center"
             android:layout_marginBottom="24dp"
-            android:inputType="textPassword" />
+            android:background="#FFFAFA"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:text="password" />
 
         <Button
-            android:id="@+id/enterBT"
+            android:id="@+id/btnEnter"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -63,18 +63,18 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/fbBT"
+            android:id="@+id/btnFB"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/gBT"
+            android:id="@+id/btnG"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
     </LinearLayout>
 
     <LinearLayout
@@ -83,22 +83,22 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/cadView"
+            android:id="@+id/txtCad"
             android:layout_width="155dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center"
+            android:layout_marginLeft="80dp"
             android:gravity="center_horizontal"
             android:text="Ainda não cadastrado?"
-            android:layout_marginLeft="80dp"
             android:textColor="#47525E" />
 
         <TextView
-            android:id="@+id/cadView2"
+            android:id="@+id/txtCad2"
             android:layout_width="91dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center"
             android:text="Cadastre-se"
-            android:textColor="#1E90FF"
-            android:layout_gravity="center_vertical|center"/>
+            android:textColor="#1E90FF" />
     </LinearLayout>
 
 </LinearLayout>
