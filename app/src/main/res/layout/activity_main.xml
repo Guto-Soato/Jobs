@@ -31,7 +31,7 @@
             android:layout_width="359dp"
             android:layout_height="63dp"
             android:ems="10"
-            android:text="Usuário ou e-Mail"
+            android:text="Usuário ou e-mail"
             android:background="#FFFAFA"
             android:layout_gravity="center"
             android:layout_marginBottom="6dp"
@@ -42,7 +42,7 @@
             android:layout_width="359dp"
             android:layout_height="63dp"
             android:ems="10"
-            android:text="Senha"
+            android:text="password"
             android:background="#FFFAFA"
             android:layout_gravity="center"
             android:layout_marginBottom="24dp"
@@ -86,9 +86,11 @@
             android:id="@+id/cadView"
             android:layout_width="155dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center"
+            android:gravity="center_horizontal"
             android:text="Ainda não cadastrado?"
-            android:textColor="#47525E"
-            android:layout_gravity="center_vertical|center"/>
+            android:layout_marginLeft="80dp"
+            android:textColor="#47525E" />
 
         <TextView
             android:id="@+id/cadView2"
