@@ -84,7 +84,7 @@
 
         <Button
             android:id="@+id/btnBuscar"
-            android:layout_width="match_parent"
+            android:layout_width="127dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
