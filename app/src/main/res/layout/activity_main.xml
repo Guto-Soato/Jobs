@@ -62,19 +62,17 @@
         android:layout_height="84dp"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnFB"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1" />
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="194dp"
+            android:layout_height="61dp"
+            app:srcCompat="@drawable/google" />
 
-        <Button
-            android:id="@+id/btnG"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1" />
+        <ImageView
+            android:id="@+id/btnFB"
+            android:layout_width="176dp"
+            android:layout_height="61dp"
+            app:srcCompat="@drawable/fb" />
     </LinearLayout>
 
     <LinearLayout
