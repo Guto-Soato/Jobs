@@ -19,8 +19,8 @@
             android:layout_width="112dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="<"
-            android:textSize="24sp" />
+            android:text="voltar"
+            android:textSize="12sp" />
 
     </LinearLayout>
 

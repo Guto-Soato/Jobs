@@ -1,0 +1,27 @@
+package st.mape.jobs;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+/**
+ * Created by Matheus Rodrigues on 03/09/2017.
+ */
+
+public class ActivityBuscar extends AppCompatActivity {
+
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.tela_buscar);
+
+        Intent chamaTelaBuscar = getIntent();
+
+}
+
+
+
+}
