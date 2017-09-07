@@ -2,6 +2,7 @@ package st.mape.jobs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -33,21 +34,23 @@ public class  MainActivity extends AppCompatActivity {
 
         inicializaComponentes();
         eventoClicks();
+        eventoClicks2();
 
     }
 
     //Método responsável pelos eventos de clicks nos botões
-    private void eventoClicks(){
+    private void eventoClicks() {
 
-        btnLogar.setOnClickListener(new View.OnClickListener(){
+        btnLogar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 String email = editEmail.getText().toString().trim();
                 String senha = editSenha.getText().toString().trim();
-                login(email,senha); //
+                login(email, senha); //
             }
         });
-
+    }
+    private void eventoClicks2(){
         txtCadastrar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

@@ -50,7 +50,7 @@
             android:background="#FFFAFA"
             android:ems="10"
             android:inputType="textPassword"
-            android:hint="password" />
+            android:hint="Senha" />
 
         <Button
             android:id="@+id/btnEnter"

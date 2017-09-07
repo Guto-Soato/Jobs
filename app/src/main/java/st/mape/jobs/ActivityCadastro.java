@@ -19,8 +19,10 @@ public class ActivityCadastro extends AppCompatActivity {
         setContentView(R.layout.cadastro);
 
         // recebe o click do botao Entrar
-        Intent chamaTelaCadastro = getIntent();
+        //Intent chamaTelaCadastro = getIntent();
 
+        // recebe o click de cadastre-se
+        //Intent t = getIntent();
         inicializaComponentes();
         eventoClicks();
 
@@ -40,7 +42,7 @@ public class ActivityCadastro extends AppCompatActivity {
         // Método p inicializar as variaveis com os componentes da tela
         private void inicializaComponentes(){
 
-            btnEmpresa = (Button) findViewById(R.id.btnEnter);
+            btnEmpresa = (Button) findViewById(R.id.btnEmpresa);
             btnPessoa =  (Button) findViewById(R.id.btnPessoa);
 
         }
