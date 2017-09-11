@@ -15,32 +15,32 @@
         android:text="Voltar" />
 
     <TextView
-        android:id="@+id/txtEmp"
+        android:id="@+id/txtPes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="120dp"
         android:layout_marginTop="50dp"
-        android:text="EMPRESA"
+        android:text="PESSOA"
         android:textSize="30sp"
 
         />
 
     <TextView
-        android:id="@+id/txtNomeEmp"
+        android:id="@+id/txtNomePes"
         android:layout_width="373dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="50dp"
-        android:text="Nome da Empresa:"
+        android:text="Nome da Pessoa:"
 
         />
 
     <EditText
-        android:id="@+id/txtEditNomeEmp"
+        android:id="@+id/txtEditNomePes"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_margin="10dp"
         android:layout_gravity="center"
+        android:layout_margin="10dp"
         android:layout_weight="0.17"
         android:background="@android:color/white"
         android:ems="10"
@@ -121,4 +121,5 @@
 
         android:layout_marginBottom="40dp"
         android:text="Cadastrar" />
+
 </LinearLayout>

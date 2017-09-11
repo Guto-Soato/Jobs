@@ -15,13 +15,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 /**
- * Created by Matheus Rodrigues on 04/09/2017.
+ * Created by Ramalho on 11/09/2017.
  */
 
-public class ActivityCadEmpresa extends AppCompatActivity {
+public class ActivityCadPessoa extends AppCompatActivity {
 
-    // vaiáveis p receber os componentes do xml
-    private EditText editEmpresa, editEmail, editSenha, editConfSenha;
+    // variáveis p receber os componentes do xml
+    private EditText editPessoa, editEmail, editSenha, editConfSenha;
     private Button btnCadastrar, btnVoltar;
 
     private FirebaseAuth mAuth;
@@ -29,10 +29,10 @@ public class ActivityCadEmpresa extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cadastro_empresa);
+        setContentView(R.layout.cadastro_pessoa);
 
-        // recebe o click do botao Empressa, na tela de cadastro
-        Intent chamaCadEmpresa = getIntent();
+        // recebe o click do botao Pessoa, na tela de cadastro
+        Intent chamaCadPessoa = getIntent();
 
         inicializaComponentes();
         eventoClicks2();
@@ -70,21 +70,21 @@ public class ActivityCadEmpresa extends AppCompatActivity {
 
     private void cadastraUsuario(String email, String senha){
         mAuth.createUserWithEmailAndPassword(email,senha)
-                .addOnCompleteListener(ActivityCadEmpresa.this, new OnCompleteListener<AuthResult>(){
+                .addOnCompleteListener(ActivityCadPessoa.this, new OnCompleteListener<AuthResult>(){
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task){
-                    if (task.isSuccessful()){
-                        alerta("Cadastro realizado com sucesso!");
-                        Intent chamaTelaBuscar = new Intent(ActivityCadEmpresa.this,ActivityBuscar.class);
-                        startActivity(chamaTelaBuscar);
-                        finish();
-                    }else{
-                        alerta("Erro no cadastro");
+                        if (task.isSuccessful()){
+                            alerta("Cadastro realizado com sucesso!");
+                            Intent chamaTelaBuscar = new Intent(ActivityCadPessoa.this,ActivityBuscar.class);
+                            startActivity(chamaTelaBuscar);
+                            finish();
+                        }else{
+                            alerta("Erro no cadastro");
+                        }
+
                     }
 
-            }
-
-        });
+                });
 
     }
 
@@ -92,14 +92,14 @@ public class ActivityCadEmpresa extends AppCompatActivity {
 
     //Método para exibir mensagem na tela
     private void alerta(String s) {
-        Toast.makeText(ActivityCadEmpresa.this,s,Toast.LENGTH_SHORT).show();
+        Toast.makeText(ActivityCadPessoa.this,s,Toast.LENGTH_SHORT).show();
     }
 
 
     // Método p inicializar as variaveis com os campos da tela
     private void inicializaComponentes(){
 
-        editEmpresa = (EditText) findViewById(R.id.txtEditNomeEmp);
+        editPessoa = (EditText) findViewById(R.id.txtEditNomePes);
         editEmail = (EditText) findViewById(R.id.txtEditMail);
         editSenha = (EditText) findViewById(R.id.txtEditSenha);
         editConfSenha = (EditText) findViewById(R.id.txtEditConfSenha);

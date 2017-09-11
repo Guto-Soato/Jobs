@@ -20,8 +20,8 @@ public class ActivityBuscar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_buscar);
 
-        Intent chamaTelaBuscar = getIntent();
         inicializaComponentes();
+        eventoClicks();
 
 }
 

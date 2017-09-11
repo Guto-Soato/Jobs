@@ -6,84 +6,62 @@
     android:background="#9ad3d5"
     android:weightSum="1">
 
-    <Button
-        android:id="@+id/btnVoltar"
-        android:layout_width="121dp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/darker_gray"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:text="Voltar"
-        android:textSize="12sp"/>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="196dp"
-        android:layout_weight="0.82"
-        android:weightSum="1"
-        android:orientation="vertical">
+        android:layout_height="75dp"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/txtCadastro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="80dp"
-                android:text="CADASTRO"
-                android:textColor="@android:color/holo_blue_dark"
-                android:textSize="30sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1.22">
-
-            <TextView
-                android:id="@+id/txtPergunta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="150dp"
-                android:text="Qual tipo de Cadastro?"
-                android:textColor="#47525E"
-                android:textSize="24sp" />
-
-        </LinearLayout>
+        <Button
+            android:id="@+id/btnVoltar"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:onClick="voltar"
+            android:text="voltar" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.10"
+        android:layout_height="350dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtPergunta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Qual tipo de Cadastro?"
+            android:textColor="#47525E"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnEmpresa"
-            android:layout_width="177dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
             android:text="Empresa" />
 
         <Button
             android:id="@+id/btnPessoa"
-            android:layout_width="202dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:layout_weight="1"
             android:text="Pessoa" />
+
     </LinearLayout>
 
 </LinearLayout>

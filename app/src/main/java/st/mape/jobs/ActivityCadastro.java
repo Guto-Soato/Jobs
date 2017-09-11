@@ -10,7 +10,7 @@ import android.widget.Button;
 public class ActivityCadastro extends AppCompatActivity {
 
     // vaiáveis p receber os componentes do xml
-    private Button btnEmpresa,btnPessoa;
+    private Button btnEmpresa, btnPessoa, btnVoltar;
 
 
     @Override
@@ -25,6 +25,8 @@ public class ActivityCadastro extends AppCompatActivity {
         //Intent t = getIntent();
         inicializaComponentes();
         eventoClicks();
+        eventoClicks2();
+        eventoClicks3();
 
     }
 
@@ -34,8 +36,29 @@ public class ActivityCadastro extends AppCompatActivity {
         btnEmpresa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent chamaCadEmpresa = new Intent();
-                startActivity(chamaCadEmpresa);
+                Intent emp = new Intent(ActivityCadastro.this, ActivityCadEmpresa.class);
+                startActivity(emp);
+            }
+        });
+    }
+
+    private void eventoClicks2() {
+
+        btnPessoa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent pes = new Intent(ActivityCadastro.this, ActivityCadPessoa.class);
+                startActivity(pes);
+            }
+        });
+    }
+
+    private void eventoClicks3() {
+
+        btnVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
@@ -44,9 +67,9 @@ public class ActivityCadastro extends AppCompatActivity {
 
             btnEmpresa = (Button) findViewById(R.id.btnEmpresa);
             btnPessoa =  (Button) findViewById(R.id.btnPessoa);
+            btnVoltar = (Button) findViewById(R.id.btnVoltar);
 
         }
-
 
     }
 

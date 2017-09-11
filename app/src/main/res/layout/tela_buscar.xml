@@ -10,17 +10,17 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="73dp"
+        android:layout_height="75dp"
         android:orientation="horizontal"
         android:weightSum="1">
 
         <Button
             android:id="@+id/btnVoltar"
-            android:layout_width="112dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="voltar"
-            android:textSize="12sp" />
+            android:onClick="voltar" />
 
     </LinearLayout>
 
