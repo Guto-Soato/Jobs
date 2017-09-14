@@ -1,125 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#9ad3d5"
-    android:weightSum="1">
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="4"
+    android:background="#9ad3d5" >
 
-    <Button
-        android:id="@+id/btnVoltar"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:onClick="voltar"
-        android:text="Voltar" />
-
-    <TextView
-        android:id="@+id/txtPes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="120dp"
-        android:layout_marginTop="50dp"
-        android:text="PESSOA"
-        android:textSize="30sp"
-
-        />
-
-    <TextView
-        android:id="@+id/txtNomePes"
-        android:layout_width="373dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="50dp"
-        android:text="Nome da Pessoa:"
-
-        />
-
-    <EditText
-        android:id="@+id/txtEditNomePes"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:layout_weight="0.17"
-        android:background="@android:color/white"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        android:textSize="20sp" />
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/txtMail"
+        <Button
+            android:id="@+id/btnVoltar"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:onClick="voltar"
+            android:text="Voltar" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:text="Email:" />
+        android:layout_height="match_parent"
+        android:layout_weight="0.7"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/txtEditMail"
+        <TextView
+            android:id="@+id/txtPes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:text="PESSOA"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/txtNomePes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Nome da Pessoa:"
+
+            />
+
+        <EditText
+            android:id="@+id/txtEditNomePes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/txtMail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Email:" />
+
+        <EditText
+            android:id="@+id/txtEditMail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/txtSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Senha:" />
+
+        <EditText
+            android:id="@+id/txtEditSenha"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/txtConfSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Confirmar Senha:" />
+
+        <EditText
+            android:id="@+id/txtEditConfSenha"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_margin="10dp"
-        android:layout_gravity="center"
-        android:layout_weight="0.16"
-        android:background="@android:color/white"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        android:textSize="20sp" />
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txtSenha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:text="Senha:" />
+        <Button
+            android:id="@+id/btnCad"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Cadastrar" />
 
-    <EditText
-        android:id="@+id/txtEditSenha"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_margin="10dp"
-        android:layout_gravity="center"
-        android:layout_weight="0.16"
-        android:background="@android:color/white"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/txtConfSenha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:text="Confirmar Senha:" />
-
-    <EditText
-        android:id="@+id/txtEditConfSenha"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_margin="10dp"
-        android:layout_gravity="center"
-        android:background="@android:color/white"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="\n\n" />
-
-    <Button
-        android:id="@+id/btnCad"
-        android:layout_width="194dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-
-        android:layout_marginBottom="40dp"
-        android:text="Cadastrar" />
+    </LinearLayout>
 
 </LinearLayout>

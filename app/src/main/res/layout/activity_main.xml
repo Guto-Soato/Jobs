@@ -29,7 +29,7 @@
         <EditText
             android:id="@+id/txtMail"
             android:layout_width="match_parent"
-            android:layout_height="63dp"
+            android:layout_height="55dp"
             android:layout_gravity="center"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
@@ -42,7 +42,7 @@
         <EditText
             android:id="@+id/txtPass"
             android:layout_width="match_parent"
-            android:layout_height="63dp"
+            android:layout_height="55dp"
             android:layout_gravity="center"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
@@ -112,7 +112,7 @@
             android:id="@+id/txtCad2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="1.5"
             android:layout_gravity="center_vertical|center"
             android:text="Cadastre-se"
             android:onClick="cadastro"
