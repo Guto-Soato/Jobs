@@ -10,7 +10,7 @@ import android.widget.Button;
 public class ActivityCadastro extends AppCompatActivity {
 
     // vaiáveis p receber os componentes do xml
-    private Button btnEmpresa, btnPessoa, btnVoltar;
+    private Button btnEmpresa,btnPessoa,btnVoltar;
 
 
     @Override
@@ -23,43 +23,29 @@ public class ActivityCadastro extends AppCompatActivity {
 
         // recebe o click de cadastre-se
         //Intent t = getIntent();
+
         inicializaComponentes();
         eventoClicks();
-        eventoClicks2();
-        eventoClicks3();
 
     }
 
     //Método responsável pelos eventos de clicks nos botões
     private void eventoClicks() {
 
-        btnEmpresa.setOnClickListener(new View.OnClickListener() {
+        btnEmpresa.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent emp = new Intent(ActivityCadastro.this, ActivityCadEmpresa.class);
-                startActivity(emp);
+                Intent chamaCadEmpresa = new Intent(ActivityCadastro.this,ActivityCadEmpresa.class);
+                startActivity(chamaCadEmpresa);
             }
         });
-    }
 
-    private void eventoClicks2() {
-
-        btnPessoa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent pes = new Intent(ActivityCadastro.this, ActivityCadPessoa.class);
-                startActivity(pes);
-            }
-        });
-    }
-
-    private void eventoClicks3() {
-
-        btnVoltar.setOnClickListener(new View.OnClickListener() {
+        btnVoltar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 finish();
             }
+
         });
     }
         // Método p inicializar as variaveis com os componentes da tela
@@ -70,6 +56,7 @@ public class ActivityCadastro extends AppCompatActivity {
             btnVoltar = (Button) findViewById(R.id.btnVoltar);
 
         }
+
 
     }
 

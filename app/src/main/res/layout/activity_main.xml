@@ -77,11 +77,13 @@
         android:layout_height="81dp"
         android:orientation="horizontal">
 
-        <ImageView
+
+           <com.google.android.gms.common.SignInButton
             android:id="@+id/btnGoogle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:clickable="true"
             app:srcCompat="@drawable/google" />
 
         <ImageView
