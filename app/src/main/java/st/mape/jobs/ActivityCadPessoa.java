@@ -32,10 +32,10 @@ public class ActivityCadPessoa extends AppCompatActivity {
         setContentView(R.layout.cadastro_pessoa);
 
         // recebe o click do botao Pessoa, na tela de cadastro
-        Intent chamaCadPessoa = getIntent();
+
 
         inicializaComponentes();
-        eventoClicks2();
+        eventoClicks();
 
     }
 
@@ -50,9 +50,7 @@ public class ActivityCadPessoa extends AppCompatActivity {
                 cadastraUsuario(email, senha); //
             }
         });
-    }
 
-    private void eventoClicks2() {
 
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override

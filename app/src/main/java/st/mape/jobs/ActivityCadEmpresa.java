@@ -92,11 +92,11 @@ public class ActivityCadEmpresa extends AppCompatActivity {
     // Método p inicializar as variaveis com os campos da tela
     private void inicializaComponentes(){
 
-        editEmpresa = (EditText) findViewById(R.id.txtEmpresa);
-        editEmail = (EditText) findViewById(R.id.txtMail);
-        editSenha = (EditText) findViewById(R.id.txtSenha);
-        editConfSenha = (EditText) findViewById(R.id.txtConfirmSenha);
-        btnCadastrar = (Button) findViewById(R.id.btnCadastrar);
+        editEmpresa = (EditText) findViewById(R.id.txtEditNomeEmp);
+        editEmail = (EditText) findViewById(R.id.txtEditMail);
+        editSenha = (EditText) findViewById(R.id.txtEditSenha);
+        editConfSenha = (EditText) findViewById(R.id.txtEditConfSenha);
+        btnCadastrar = (Button) findViewById(R.id.btnCad);
         btnVoltar = (Button) findViewById(R.id.btnVoltar);
 
     }
