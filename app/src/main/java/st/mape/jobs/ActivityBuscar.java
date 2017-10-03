@@ -1,5 +1,6 @@
 package st.mape.jobs;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,7 +13,7 @@ import android.widget.Button;
 public class ActivityBuscar extends AppCompatActivity {
 
 
-    private Button btnVoltar;
+    private Button btnVoltar, btnBuscar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -21,6 +22,7 @@ public class ActivityBuscar extends AppCompatActivity {
 
         inicializaComponentes();
         eventoClicks();
+        eventoClicks2();
 
 }
 
@@ -34,11 +36,23 @@ public class ActivityBuscar extends AppCompatActivity {
             }
         });
     }
+
+    private void eventoClicks2() {
+
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent chamaTelaMapa = new Intent(ActivityBuscar.this,ActivityMapa.class);
+                startActivity(chamaTelaMapa);
+            }
+        });
+    }
+
     // Método p inicializar as variaveis com os componentes da tela
     private void inicializaComponentes(){
 
         btnVoltar = (Button) findViewById(R.id.btnVoltar);
-
+        btnBuscar = (Button) findViewById(R.id.btnBuscar);
 
     }
 

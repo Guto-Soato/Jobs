@@ -2,5 +2,6 @@
     <string name="app_name">Jobs</string>
     <string name="facebook_app_id">132824547341768</string>
     <string name="fb_login_protocol_scheme">fb132824547341768</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
