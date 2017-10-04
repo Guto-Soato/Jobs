@@ -19,6 +19,8 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
             android:text="voltar"
             android:onClick="voltar" />
 
@@ -38,6 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.13"
             android:ems="10"
+            android:gravity="center_vertical"
             android:inputType="textPersonName"
             android:text="QUAL CARGO VOCÊ PROCURA?"
             android:textAlignment="center"
@@ -60,6 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.15"
             android:ems="10"
+            android:gravity="center_vertical"
             android:inputType="textPersonName"
             android:text="QUAL CIDADE/ESTADO?"
             android:textAlignment="center"
