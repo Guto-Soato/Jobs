@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
@@ -29,8 +31,11 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 
 public class  MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
@@ -38,7 +43,7 @@ public class  MainActivity extends AppCompatActivity implements GoogleApiClient.
     // vaiáveis p receber os componentes do xml
     private EditText editEmail, editSenha;
     private Button btnLogar;
-    private TextView txtCadastrar;
+    private TextView txtCadastrar, txtRecupSenha;
 
     //variaveis btn Facebook
     private LoginButton btnLoginFace;
@@ -62,6 +67,16 @@ public class  MainActivity extends AppCompatActivity implements GoogleApiClient.
         eventoClicks();
         conectarGoogleApi();
 
+        if(auth.getCurrentUser() != null){
+            startActivity(new Intent(MainActivity.this,ActivityBuscar.class));
+        }
+
+        if (AccessToken.getCurrentAccessToken() != null){
+            startActivity(new Intent(MainActivity.this,ActivityBuscar.class));
+        }
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
+
     }
 
     //Método responsável pelos eventos de clicks nos botões
@@ -72,7 +87,15 @@ public class  MainActivity extends AppCompatActivity implements GoogleApiClient.
             public void onClick(View v) {
                 String email = editEmail.getText().toString().trim();
                 String senha = editSenha.getText().toString().trim();
-                login(email, senha); //
+                if (email.isEmpty()) {
+                    alerta("email obrigatório!");
+                } else if (senha.isEmpty()) {
+                    alerta("senha obrigatória!");
+                } else if (AccessToken.getCurrentAccessToken() != null) {
+                    alerta("Logado com o Facebook!");
+                } else {
+                    login(email, senha);
+                }
             }
         });
 
@@ -81,8 +104,17 @@ public class  MainActivity extends AppCompatActivity implements GoogleApiClient.
             public void onClick(View v){
                 Intent chamaTelaCadastro = new Intent(MainActivity.this, ActivityCadastro.class);
                 startActivity(chamaTelaCadastro);
+                finish();
             }
+        });
 
+        txtRecupSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent chamaRecupSenha = new Intent(MainActivity.this, ActivityRecupSenha.class);
+                startActivity(chamaRecupSenha);
+                finish();
+            }
         });
 
         //botão do Google
@@ -93,11 +125,17 @@ public class  MainActivity extends AppCompatActivity implements GoogleApiClient.
             }
         });
 
-
         btnLoginFace.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                firebaseLoginFace(loginResult.getAccessToken());
+                //firebaseLoginFace(loginResult.getAccessToken());
+                if (auth.getCurrentUser() != null){
+                    alerta("Logado com Usuário!");
+                } else {
+                    Intent chamaTelaBuscar = new Intent(MainActivity.this, ActivityBuscar.class);
+                    startActivity(chamaTelaBuscar);
+                    finish();
+                }
             }
 
             @Override
@@ -123,6 +161,7 @@ public class  MainActivity extends AppCompatActivity implements GoogleApiClient.
                         if (task.isSuccessful()) {
                             Intent chamaTelaBuscar = new Intent(MainActivity.this, ActivityBuscar.class);
                             startActivity(chamaTelaBuscar);
+                            finish();
                         } else {
                             alerta("Falha na Autenticação");
                         }
@@ -140,12 +179,14 @@ public class  MainActivity extends AppCompatActivity implements GoogleApiClient.
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode==1){
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-                if (result.isSuccess()){
-                    GoogleSignInAccount account = result.getSignInAccount();
-                    firebaseLoginGoogle(account);
-                }
+            if (result.isSuccess()){
+                GoogleSignInAccount account = result.getSignInAccount();
+                firebaseLoginGoogle(account);
+            }
         }
     }
 
@@ -168,27 +209,19 @@ public class  MainActivity extends AppCompatActivity implements GoogleApiClient.
     // método para logar com email e senha - qdo o usuario clicar em "Entrar" no app, envia dados dele para cá
     private void login(String email, String senha) {
         auth.signInWithEmailAndPassword(email,senha)
-            .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        // se logar, vai para a tela de busca
-                        Intent chamaTelaBuscar = new Intent(MainActivity.this,ActivityBuscar.class);
-                        startActivity(chamaTelaBuscar);
-                    }else{
-                        alerta("e-mail ou senha incorretos");
+                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // se logar, vai para a tela de busca
+                            Intent chamaTelaBuscar = new Intent(MainActivity.this,ActivityBuscar.class);
+                            startActivity(chamaTelaBuscar);
+                        }else{
+                            alerta("e-mail ou senha incorretos");
+                        }
                     }
-        }
-        });
+                });
     }
-
-/*
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        mCallbackManager.onActivityResult(requestCode,resultCode,data);
-    }*/
 
     @Override
     public void onStart() {
@@ -216,6 +249,7 @@ public class  MainActivity extends AppCompatActivity implements GoogleApiClient.
         editSenha = (EditText) findViewById(R.id.txtPass);
         btnLogar = (Button) findViewById(R.id.btnEnter);
         txtCadastrar = (TextView) findViewById(R.id.txtCad2);
+        txtRecupSenha = (TextView) findViewById(R.id.txtForgPass);
         btnSignIn = (SignInButton) findViewById(R.id.btnGoogle);
         btnLoginFace = (LoginButton) findViewById(R.id.btnFB);
         btnLoginFace.setReadPermissions("email","public_profile");
@@ -243,6 +277,5 @@ public class  MainActivity extends AppCompatActivity implements GoogleApiClient.
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         alerta("Falha na conexão!");
     }
-
 
 }

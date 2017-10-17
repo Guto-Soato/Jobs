@@ -92,7 +92,7 @@
             android:layout_weight="1"
             android:background="@android:color/white"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPassword" />
 
         <TextView
             android:id="@+id/txtConfSenha"
@@ -110,7 +110,7 @@
             android:layout_weight="1"
             android:background="@android:color/white"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPassword" />
 
     </LinearLayout>
 
