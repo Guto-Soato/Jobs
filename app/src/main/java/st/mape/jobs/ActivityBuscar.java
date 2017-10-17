@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,6 +20,7 @@ public class ActivityBuscar extends AppCompatActivity {
 
 
     private Button btnVoltar, btnBuscar;
+    private TextView txtBuscarPosto;
 
     private FirebaseAuth auth;
 
@@ -65,6 +67,14 @@ public class ActivityBuscar extends AppCompatActivity {
                 startActivity(chamaTelaMapa);
             }
         });
+
+        txtBuscarPosto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent chamaPosto = new Intent(ActivityBuscar.this,ListaPostos.class);
+                startActivity(chamaPosto);
+            }
+        });
     }
 
     private void logoutUser(){
@@ -81,7 +91,7 @@ public class ActivityBuscar extends AppCompatActivity {
 
         btnVoltar = (Button) findViewById(R.id.btnVoltar);
         btnBuscar = (Button) findViewById(R.id.btnBuscar);
-
+        txtBuscarPosto = (TextView) findViewById(R.id.txtBuscarPosto);
     }
 
 
