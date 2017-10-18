@@ -47,7 +47,12 @@ public class ActivityCadPessoa extends AppCompatActivity {
             public void onClick(View v) {
                 String email = editEmail.getText().toString().trim();
                 String senha = editSenha.getText().toString().trim();
-                cadastraUsuario(email, senha); //
+                String confsenha = editConfSenha.getText().toString().trim();
+                if (confsenha.equals(senha)){
+                    cadastraUsuario(email, senha);
+                } else {
+                    alerta("As senhas são diferentes!");
+                }
             }
         });
 
