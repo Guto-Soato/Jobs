@@ -1,41 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="140dp"
-    android:background="@android:color/holo_green_dark">
+    android:layout_height="176dp"
+    android:background="@drawable/side_nav_bar"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:id="@+id/imageHead"
+        android:id="@+id/imageHeadView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="13dp"
-        android:paddingHorizontal="30dp"
-        android:paddingVertical="30dp" />
+        android:paddingTop="8dp"
+        app:srcCompat="@mipmap/ic_launcher_round" />
 
     <TextView
         android:id="@+id/txtHeadName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#47525E"
-        android:textSize="16dp"
-        android:layout_alignStart="@+id/imageHead"
-        android:layout_below="@+id/imageHead"
-        android:paddingHorizontal="20dp"
-        android:text="dsasf"/>
+        android:paddingTop="8dp"
+        android:text="Android Studio"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/txtHeadEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#47525E"
-        android:textSize="13dp"
-        android:layout_alignEnd="@+id/txtHeadName"
-        android:layout_alignStart="@+id/txtHeadName"
-        android:layout_below="@+id/txtHeadName"
-        android:paddingHorizontal="20dp"
-        android:text="sfsa"/>
-</RelativeLayout>
+        android:text="android.studio@android.com" />
+
+</LinearLayout>
