@@ -41,11 +41,14 @@ public class ActivityBuscar extends AppCompatActivity implements NavigationView.
 
         auth = FirebaseAuth.getInstance();
 
-        mDrawer = (DrawerLayout) findViewById(R.id.drawerLayout);
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         mToggle = new ActionBarDrawerToggle(this, mDrawer, R.string.open, R.string.close);
         mDrawer.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 }
 
     public boolean onCreateOptionsMenu (Menu menu) {
@@ -72,7 +75,7 @@ public class ActivityBuscar extends AppCompatActivity implements NavigationView.
             LoginManager.getInstance().logOut();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerLayout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
