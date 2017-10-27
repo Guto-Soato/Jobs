@@ -2,11 +2,17 @@ package st.mape.jobs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.facebook.login.LoginManager;
@@ -16,13 +22,14 @@ import com.google.firebase.auth.FirebaseAuth;
  * Created by Matheus Rodrigues on 03/09/2017.
  */
 
-public class ActivityBuscar extends AppCompatActivity {
+public class ActivityBuscar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
 
-    private Button btnVoltar, btnBuscar;
-    private TextView txtBuscarPosto;
-
+    private Button btnBuscar;
+    private TextView txtBuscarPosto, txtHeadName;
     private FirebaseAuth auth;
+    private DrawerLayout mDrawer;
+    private ActionBarDrawerToggle mToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -34,6 +41,11 @@ public class ActivityBuscar extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
+        mDrawer = (DrawerLayout) findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawer, R.string.open, R.string.close);
+        mDrawer.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 }
 
     public boolean onCreateOptionsMenu (Menu menu) {
@@ -43,6 +55,9 @@ public class ActivityBuscar extends AppCompatActivity {
 
     public boolean onOptionsItemSelected (MenuItem item) {
         int id = item.getItemId();
+        if (mToggle.onOptionsItemSelected(item)){
+            return true;
+        }
         if(id == R.id.menu_sair){
             logoutUser();
             LoginManager.getInstance().logOut();
@@ -50,15 +65,29 @@ public class ActivityBuscar extends AppCompatActivity {
         return true;
     }
 
+    public boolean onNavigationItemSelected (MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.nav_sair) {
+            logoutUser();
+            LoginManager.getInstance().logOut();
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerLayout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    private void onNavDrawerItemSelected (MenuItem menuItem){
+        switch (menuItem.getItemId()){
+            case R.id.nav_conta:
+                logoutUser();
+                LoginManager.getInstance().logOut();
+                break;
+        }
+    }
+
     //Método responsável pelos eventos de clicks nos botões
     private void eventoClicks() {
-
-        btnVoltar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,9 +118,9 @@ public class ActivityBuscar extends AppCompatActivity {
     // Método p inicializar as variaveis com os componentes da tela
     private void inicializaComponentes(){
 
-        btnVoltar = (Button) findViewById(R.id.btnVoltar);
         btnBuscar = (Button) findViewById(R.id.btnBuscar);
         txtBuscarPosto = (TextView) findViewById(R.id.txtBuscarPosto);
+        txtHeadName = (TextView) findViewById(R.id.txtHeadName);
     }
 
 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    android:background="@android:color/holo_green_dark">
+
+    <ImageView
+        android:id="@+id/imageHead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="13dp"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="30dp" />
+
+    <TextView
+        android:id="@+id/txtHeadName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#47525E"
+        android:textSize="16dp"
+        android:layout_alignStart="@+id/imageHead"
+        android:layout_below="@+id/imageHead"
+        android:paddingHorizontal="20dp"
+        android:text="dsasf"/>
+
+    <TextView
+        android:id="@+id/txtHeadEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#47525E"
+        android:textSize="13dp"
+        android:layout_alignEnd="@+id/txtHeadName"
+        android:layout_alignStart="@+id/txtHeadName"
+        android:layout_below="@+id/txtHeadName"
+        android:paddingHorizontal="20dp"
+        android:text="sfsa"/>
+</RelativeLayout>
