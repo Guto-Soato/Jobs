@@ -113,7 +113,6 @@ public class  MainActivity extends AppCompatActivity implements GoogleApiClient.
             public void onClick(View view) {
                 Intent chamaRecupSenha = new Intent(MainActivity.this, ActivityRecupSenha.class);
                 startActivity(chamaRecupSenha);
-                finish();
             }
         });
 
@@ -216,6 +215,7 @@ public class  MainActivity extends AppCompatActivity implements GoogleApiClient.
                             // se logar, vai para a tela de busca
                             Intent chamaTelaBuscar = new Intent(MainActivity.this,ActivityBuscar.class);
                             startActivity(chamaTelaBuscar);
+                            finish();
                         }else{
                             alerta("e-mail ou senha incorretos");
                         }

@@ -26,7 +26,7 @@ public class ActivityBuscar extends AppCompatActivity implements NavigationView.
 
 
     private Button btnBuscar;
-    private TextView txtBuscarPosto, txtHeadName;
+    private TextView txtHeadName;
     private FirebaseAuth auth;
     private DrawerLayout mDrawer;
     private ActionBarDrawerToggle mToggle;
@@ -73,20 +73,14 @@ public class ActivityBuscar extends AppCompatActivity implements NavigationView.
         if (id == R.id.nav_sair) {
             logoutUser();
             LoginManager.getInstance().logOut();
+        } else if (id == R.id.nav_postos) {
+            Intent chamaPosto = new Intent(ActivityBuscar.this,ListaPostos.class);
+            startActivity(chamaPosto);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    private void onNavDrawerItemSelected (MenuItem menuItem){
-        switch (menuItem.getItemId()){
-            case R.id.nav_conta:
-                logoutUser();
-                LoginManager.getInstance().logOut();
-                break;
-        }
     }
 
     //Método responsável pelos eventos de clicks nos botões
@@ -97,14 +91,6 @@ public class ActivityBuscar extends AppCompatActivity implements NavigationView.
             public void onClick(View v) {
                 Intent chamaTelaMapa = new Intent(ActivityBuscar.this,ActivityMapa.class);
                 startActivity(chamaTelaMapa);
-            }
-        });
-
-        txtBuscarPosto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent chamaPosto = new Intent(ActivityBuscar.this,ListaPostos.class);
-                startActivity(chamaPosto);
             }
         });
     }
@@ -122,7 +108,6 @@ public class ActivityBuscar extends AppCompatActivity implements NavigationView.
     private void inicializaComponentes(){
 
         btnBuscar = (Button) findViewById(R.id.btnBuscar);
-        txtBuscarPosto = (TextView) findViewById(R.id.txtBuscarPosto);
         txtHeadName = (TextView) findViewById(R.id.txtHeadName);
     }
 

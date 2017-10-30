@@ -32,8 +32,6 @@ public class ActivityCadPessoa extends AppCompatActivity {
         setContentView(R.layout.cadastro_pessoa);
 
         // recebe o click do botao Pessoa, na tela de cadastro
-
-
         inicializaComponentes();
         eventoClicks();
 

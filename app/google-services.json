@@ -15,21 +15,13 @@
       },
       "oauth_client": [
         {
-          "client_id": "285789648878-fij26ojaejf7r5ccegajr81jfir8q5r1.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "st.mape.jobs",
-            "certificate_hash": "c094a83eee5fb6542302680c4dba55f0264b0200"
-          }
-        },
-        {
           "client_id": "285789648878-hegrd5s48n0qhoe9rpohqdb4a8cq0poo.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyArUNxE9Ln7AIKs0Fp8WWy9-JzRFgsPcyM"
+          "current_key": "AIzaSyBl_7ao117joeu8bfNo-_M5wMxocMadgrQ"
         }
       ],
       "services": {
@@ -37,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "285789648878-hegrd5s48n0qhoe9rpohqdb4a8cq0poo.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

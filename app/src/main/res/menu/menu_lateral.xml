@@ -15,6 +15,10 @@
             android:icon="@drawable/ic_search_black_24dp"
             android:title="Pesquisas" />
         <item
+            android:id="@+id/nav_postos"
+            android:icon="@drawable/ic_room_black_24dp"
+            android:title="Postos SINE" />
+        <item
             android:id="@+id/nav_sair"
             android:icon="@drawable/ic_exit_to_app_black_24dp"
             android:title="Sair" />
