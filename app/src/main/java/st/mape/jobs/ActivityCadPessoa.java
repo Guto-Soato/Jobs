@@ -1,5 +1,6 @@
 package st.mape.jobs;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -23,6 +24,7 @@ public class ActivityCadPessoa extends AppCompatActivity {
     // variáveis p receber os componentes do xml
     private EditText editPessoa, editEmail, editSenha, editConfSenha;
     private Button btnCadastrar, btnVoltar;
+    private ProgressDialog dialog;
 
     private FirebaseAuth mAuth;
 
@@ -48,6 +50,20 @@ public class ActivityCadPessoa extends AppCompatActivity {
                 String confsenha = editConfSenha.getText().toString().trim();
                 if (confsenha.equals(senha)){
                     cadastraUsuario(email, senha);
+                    dialog = ProgressDialog.show(ActivityCadPessoa.this,"Jobs","Realizando cadastro, aguarde", false, true);
+                    dialog.setIcon(R.mipmap.ic_launcher_round);
+                    dialog.setCancelable(false);
+
+                    new Thread() {
+                        public void run () {
+                            try {
+                                Thread.sleep(100000);
+                                dialog.dismiss();
+                            } catch (Exception e) {
+
+                            }
+                        }
+                    }.start();
                 } else {
                     alerta("As senhas são diferentes!");
                 }
