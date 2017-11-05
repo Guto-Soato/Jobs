@@ -37,7 +37,7 @@ public class ActivityMapa extends AppCompatActivity {
 
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.add(R.id.container, new MapsActivity(), "Mapa");
+        transaction.add(R.id.map, new ActivityMapa(), "Mapa");
         transaction.commitAllowingStateLoss();
         auth = FirebaseAuth.getInstance();
     }
