@@ -10,17 +10,6 @@ import android.view.MenuItem;
 
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by gustavo.soato on 03/10/2017.
@@ -31,13 +20,15 @@ public class ActivityMapa extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private FirebaseAuth auth;
 
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_mapa);
 
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.add(R.id.map, new ActivityMapa(), "Mapa");
+     //   transaction.add(R.id.map, new MapsActivity(), "Mapa");
         transaction.commitAllowingStateLoss();
         auth = FirebaseAuth.getInstance();
     }

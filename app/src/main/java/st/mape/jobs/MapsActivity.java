@@ -1,109 +1,52 @@
 package st.mape.jobs;
 
 import android.content.Context;
-
-import android.content.Intent;
-
 import android.content.pm.PackageManager;
-
 import android.graphics.Color;
-
 import android.location.Location;
-
 import android.location.LocationListener;
-
 import android.location.LocationManager;
-
 import android.net.http.AndroidHttpClient;
-
 import android.os.Bundle;
-
 import android.support.v4.app.ActivityCompat;
-
 import android.support.v4.app.FragmentActivity;
-
 import android.support.v4.content.ContextCompat;
-
 import android.util.Log;
-
-import android.view.View;
-
 import android.view.WindowManager;
-
-import android.widget.AdapterView;
-
-import android.widget.ArrayAdapter;
-
-import android.widget.AutoCompleteTextView;
-
-import android.widget.ImageView;
-
 import android.widget.Toast;
 
-
-
 import com.google.android.gms.common.ConnectionResult;
-
 import com.google.android.gms.common.GooglePlayServicesUtil;
-
 import com.google.android.gms.common.api.GoogleApiClient;
-
 import com.google.android.gms.location.LocationServices;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
-
 import com.google.android.gms.maps.GoogleMap;
-
 import com.google.android.gms.maps.OnMapReadyCallback;
-
 import com.google.android.gms.maps.SupportMapFragment;
-
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-
 import com.google.android.gms.maps.model.LatLng;
-
 import com.google.android.gms.maps.model.Marker;
-
 import com.google.android.gms.maps.model.MarkerOptions;
-
 import com.google.android.gms.maps.model.Polyline;
-
 import com.google.android.gms.maps.model.PolylineOptions;
-
 import com.google.gson.Gson;
-
 import com.google.gson.GsonBuilder;
 
-
 import org.apache.http.HttpResponse;
-
 import org.apache.http.client.methods.HttpGet;
-
 import org.apache.http.util.EntityUtils;
-
 import org.json.JSONArray;
-
 import org.json.JSONException;
-
 import org.json.JSONObject;
 
-
-
 import java.io.IOException;
-
 import java.util.ArrayList;
-
 import java.util.List;
 
-
 import retrofit2.Call;
-
 import retrofit2.Callback;
-
 import retrofit2.Response;
-
 import retrofit2.Retrofit;
-
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static st.mape.jobs.ControladorRetrofit.BASE_URL;
@@ -111,7 +54,7 @@ import static st.mape.jobs.MyAdapter.postos;
 import static st.mape.jobs.MyAdapter.tracaOrigem;
 
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class MapsActivity extends FragmentActivity /*SupportMapFragment*/ implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private GoogleMap mMap;
 

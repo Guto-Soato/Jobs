@@ -1,7 +1,5 @@
 package st.mape.jobs;
 
-import android.*;
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -24,10 +22,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 
-import java.util.IllegalFormatCodePointException;
 import java.util.List;
 
 import static st.mape.jobs.MapsActivity.MAP_PERMISSION_ACCESS_FINE_LOCATION;
+
+//import static st.mape.jobs.MapsActivity.MAP_PERMISSION_ACCESS_FINE_LOCATION;
 
 /**
  * Created by Matheus Rodrigues on 29/09/2017.

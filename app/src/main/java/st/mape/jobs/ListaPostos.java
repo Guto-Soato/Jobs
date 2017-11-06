@@ -30,11 +30,7 @@ import static st.mape.jobs.ControladorRetrofit.BASE_URL;
 import static st.mape.jobs.MapsActivity.MAP_PERMISSION_ACCESS_FINE_LOCATION;
 import static st.mape.jobs.MyAdapter.verificaFinalizar;
 
-/**
- * Created by Matheus Rodrigues on 29/09/2017.
- */
-
-public class ListaPostos extends AppCompatActivity implements OnMapReadyCallback{
+public class ListaPostos extends AppCompatActivity implements OnMapReadyCallback {
 
     // variaveis recyclerView
     private RecyclerView mRecyclerView;
