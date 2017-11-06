@@ -6,39 +6,39 @@
     android:background="#9ad3d5">
 
     <EditText
-        android:id="@+id/txtCNPJ"
+        android:id="@+id/editCNPJ"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="CNPJ" />
+        android:hint="CNPJ" />
 
     <EditText
-        android:id="@+id/txtCargo"
+        android:id="@+id/editCargo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Cargo" />
+        android:hint="Cargo" />
 
     <EditText
-        android:id="@+id/txtDesc"
+        android:id="@+id/editDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Desc" />
+        android:hint="Desc" />
 
     <EditText
-        android:id="@+id/txtSalario"
+        android:id="@+id/editSalario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Salario" />
+        android:hint="Salario(R$)" />
 
     <EditText
-        android:id="@+id/txtEmail"
+        android:id="@+id/editEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -46,6 +46,7 @@
         android:hint="Email"/>
 
     <ListView
+        android:id="@+id/listV_dados"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

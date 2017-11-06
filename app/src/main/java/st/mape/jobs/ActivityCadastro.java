@@ -29,8 +29,8 @@ public class ActivityCadastro extends AppCompatActivity {
         btnEmpresa.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent chamaCadEmpresa = new Intent(ActivityCadastro.this,ActivityCadEmpresa.class);
-                startActivity(chamaCadEmpresa);
+                Intent chamaListaVagas = new Intent(ActivityCadastro.this,ListaVagas.class);
+                startActivity(chamaListaVagas);
             }
         });
 
