@@ -73,9 +73,14 @@ public class ActivityBuscar extends AppCompatActivity implements NavigationView.
         if (id == R.id.nav_sair) {
             logoutUser();
             LoginManager.getInstance().logOut();
-        } else if (id == R.id.nav_postos) {
-            Intent chamaPosto = new Intent(ActivityBuscar.this,ListaPostos.class);
+        }
+        if (id == R.id.nav_postos) {
+            Intent chamaPosto = new Intent(ActivityBuscar.this, ListaPostos.class);
             startActivity(chamaPosto);
+        }
+        if (id == R.id.nav_conta) {
+            Intent chamaPerfil = new Intent(ActivityBuscar.this, Perfil.class);
+            startActivity(chamaPerfil);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

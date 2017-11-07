@@ -53,6 +53,7 @@
         <activity android:name=".ListaPostos" />
         <activity android:name=".ListaVagas" />
         <activity android:name=".ActivityRecupSenha" />
+        <activity android:name=".Perfil" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
