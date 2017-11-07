@@ -25,9 +25,6 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.List;
 
 import static st.mape.jobs.MapsActivity.MAP_PERMISSION_ACCESS_FINE_LOCATION;
-
-//import static st.mape.jobs.MapsActivity.MAP_PERMISSION_ACCESS_FINE_LOCATION;
-
 /**
  * Created by Matheus Rodrigues on 29/09/2017.
  *

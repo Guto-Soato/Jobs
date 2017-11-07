@@ -89,7 +89,7 @@ public class ActivityBuscar extends AppCompatActivity implements NavigationView.
         btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent chamaTelaMapa = new Intent(ActivityBuscar.this,ActivityMapa.class);
+                Intent chamaTelaMapa = new Intent(ActivityBuscar.this, MapsActivity.class);
                 startActivity(chamaTelaMapa);
             }
         });
