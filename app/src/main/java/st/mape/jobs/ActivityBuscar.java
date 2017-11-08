@@ -82,6 +82,10 @@ public class ActivityBuscar extends AppCompatActivity implements NavigationView.
             Intent chamaPerfil = new Intent(ActivityBuscar.this, Perfil.class);
             startActivity(chamaPerfil);
         }
+        if (id == R.id.nav_vaga) {
+            Intent chamaVaga = new Intent(ActivityBuscar.this, ListaVagas.class);
+            startActivity(chamaVaga);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

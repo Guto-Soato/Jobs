@@ -102,7 +102,7 @@ public class  MainActivity extends AppCompatActivity implements GoogleApiClient.
         txtCadastrar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent chamaTelaCadastro = new Intent(MainActivity.this, ActivityCadastro.class);
+                Intent chamaTelaCadastro = new Intent(MainActivity.this, ActivityCadPessoa.class);
                 startActivity(chamaTelaCadastro);
                 finish();
             }

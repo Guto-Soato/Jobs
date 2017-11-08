@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_gravity="center_vertical|center_horizontal|center"
-            android:text="PESSOA"
+            android:text="Nova Conta"
             android:textSize="30sp" />
 
         <TextView

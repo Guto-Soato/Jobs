@@ -48,7 +48,6 @@
         </activity>
         <activity android:name=".ActivityBuscar" />
         <activity android:name=".ActivityCadastro" />
-        <activity android:name=".ActivityCadEmpresa" />
         <activity android:name=".ActivityCadPessoa" />
         <activity android:name=".ListaPostos" />
         <activity android:name=".ListaVagas" />
