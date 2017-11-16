@@ -20,10 +20,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ListaPostos extends AppCompatActivity {
 
-
-
-
-
     // variaveis recyclerView
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -47,7 +43,6 @@ public class ListaPostos extends AppCompatActivity {
                 .baseUrl("http://mobile-aceite.tcu.gov.br/mapa-da-saude/")// iRetrofitTCU.ENDPOINT
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
 
         iRetrofitTCU service = retrofit.create(iRetrofitTCU.class);
 

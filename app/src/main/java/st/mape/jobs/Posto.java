@@ -8,8 +8,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Posto {
 
-
-
     private Integer codPosto;
     private String nome;
     private String endereco;
