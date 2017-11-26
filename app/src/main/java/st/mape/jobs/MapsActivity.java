@@ -60,7 +60,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
         apiPostos = retrofit.create(iRetrofitTCU.class);
 
         locManager = (LocationManager) getSystemService(LOCATION_SERVICE);

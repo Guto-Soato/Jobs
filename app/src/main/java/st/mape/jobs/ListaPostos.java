@@ -20,6 +20,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ListaPostos extends AppCompatActivity {
 
+
+
+
+
     // variaveis recyclerView
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -44,9 +48,10 @@ public class ListaPostos extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
+
         iRetrofitTCU service = retrofit.create(iRetrofitTCU.class);
 
-        Call<List<Posto>> callListPostoSINE = service.listPostos(); //getPosto("2334007-0")
+        Call<List<Posto>> callListPostoSINE = service.callListPostoSINE(); //getPosto("2334007-0")
         callListPostoSINE.enqueue(new retrofit2.Callback<List<Posto>>() {
             @Override
             public void onResponse(Call<List<Posto>> call, Response<List<Posto>> response) {

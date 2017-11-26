@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Posto {
 
-    private Integer codPosto;
+    private String codPosto;
     private String nome;
     private String endereco;
     private String bairro;
@@ -20,11 +20,11 @@ public class Posto {
     @SerializedName("lon") private Float longitude;
 
 
-    public Integer getCodPosto() {
+    public String getCodPosto() {
         return codPosto;
     }
 
-    public void setCodPosto(Integer codPosto) {
+    public void setCodPosto(String codPosto) {
         this.codPosto = codPosto;
     }
 

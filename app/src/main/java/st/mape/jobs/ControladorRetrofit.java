@@ -35,7 +35,7 @@ public class ControladorRetrofit implements Callback<List<Posto>> {
 
         iRetrofitTCU apiPosto = retrofit.create(iRetrofitTCU.class);
 
-        Call<List<Posto>> call = apiPosto.listPostos();
+        Call<List<Posto>> call = apiPosto.callListPostoSINE();
         call.enqueue(this);
     }
 

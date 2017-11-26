@@ -16,7 +16,7 @@ public interface iRetrofitTCU {
     //String ENDPOINT = "http://mobile-aceite.tcu.gov.br/mapa-da-saude";
 
     @GET("rest/emprego")
-    Call<List<Posto>> listPostos(); // getPosto(@Path("codPosto") String codPosto
+    Call<List<Posto>> callListPostoSINE(); // getPosto(@Path("codPosto") String codPosto
 
     @GET("rest/emprego/latitude/{latitude}/longitude/{longitude}/raio/{raio}")
     Call<List<Posto>> listPosto(@Path("latitude") String lat,@Path("longitude") String lon,@Path("raio") String raio);

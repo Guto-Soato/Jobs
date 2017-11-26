@@ -31,7 +31,7 @@ import static st.mape.jobs.MapsActivity.MAP_PERMISSION_ACCESS_FINE_LOCATION;
  * O adaptador é responsável por receber a fonte de dados do projeto, atraves do objeto List<>
  */
 
-    public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements OnMapReadyCallback {
+    public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         private List<Posto> values;
         public Context contextListaPosto;
@@ -39,17 +39,15 @@ import static st.mape.jobs.MapsActivity.MAP_PERMISSION_ACCESS_FINE_LOCATION;
         public static Posto postos;
         public static LatLng tracaOrigem;
         public static boolean verificaFinalizar = false;
-        private LocationManager locManager;
 
         // Fornece uma referência para as views de cada item de dados
         // Complex data items may need more than one view per item, and
         // Fornece acesso a todas as visualizações para um item de dados pelo view holder
-        public static class ViewHolder extends RecyclerView.ViewHolder {
+        public class ViewHolder extends RecyclerView.ViewHolder {
             // each data item is just a string in this case
             public TextView txtHeader;
             public TextView txtFooter;
             public View layout;
-            public Button btnIr;
 
             public ViewHolder(View v) {
                 super(v);
@@ -57,11 +55,6 @@ import static st.mape.jobs.MapsActivity.MAP_PERMISSION_ACCESS_FINE_LOCATION;
                 txtHeader = (TextView) v.findViewById(R.id.firstLine);
                 txtFooter = (TextView) v.findViewById(R.id.secondLine);
             }
-        }
-
-        public void add(int position, Posto item) {
-            values.add(position, item);
-            notifyItemInserted(position);
         }
 
         public MyAdapter (Context contextListaPosto, List<Posto> myDataset) {
@@ -91,14 +84,7 @@ import static st.mape.jobs.MapsActivity.MAP_PERMISSION_ACCESS_FINE_LOCATION;
         public void onBindViewHolder(final ViewHolder holder, final int position) {
             // - get element from your dataset at this position
             // - replace the contents of the view with that element
-            locManager = (LocationManager) contextListaPosto.getSystemService(Context.LOCATION_SERVICE);
 
-            if (ContextCompat.checkSelfPermission(contextListaPosto, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions((Activity) contextListaPosto, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, MAP_PERMISSION_ACCESS_FINE_LOCATION);
-            } else {
-                getLastLocation();
-                getLocation();
-            }
             final Posto posto = values.get(position);
             holder.txtHeader.setText(posto.getNome());
             holder.txtHeader.setOnClickListener(new OnClickListener() {
@@ -121,47 +107,6 @@ import static st.mape.jobs.MapsActivity.MAP_PERMISSION_ACCESS_FINE_LOCATION;
         public int getItemCount() {
             return values.size();
         }
-
-        public void getLastLocation () {
-            if (ContextCompat.checkSelfPermission(contextListaPosto, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
-                Location lastKnownLocation = locManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                LatLng me = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
-                tracaOrigem = me;
-            }
-        }
-
-    public void getLocation() {
-        if (ContextCompat.checkSelfPermission(contextListaPosto, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
-            LocationListener locationListener = new LocationListener() {
-                public void onLocationChanged(Location location) {
-                    LatLng me = new LatLng(location.getLatitude(), location.getLongitude());
-                    tracaOrigem = me;
-                }
-
-                public void onStatusChanged(String provider, int status, Bundle extras) {
-                }
-
-                public void onProviderEnabled(String provider) {
-                }
-
-                public void onProviderDisabled(String provider) {
-                }
-            };
-            locManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 40000, 0, locationListener);
-        }
-    }
-
-    public void onMapReady(GoogleMap googleMap) {
-
-        locManager = (LocationManager) contextListaPosto.getSystemService(Context.LOCATION_SERVICE);
-
-        if (ContextCompat.checkSelfPermission(contextListaPosto, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions((Activity) contextListaPosto, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, MAP_PERMISSION_ACCESS_FINE_LOCATION);
-        } else {
-            getLastLocation();
-            getLocation();
-        }
-    }
 
 }
 
