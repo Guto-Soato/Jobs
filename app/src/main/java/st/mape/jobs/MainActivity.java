@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,11 +30,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
 
 
 public class  MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
@@ -68,11 +63,11 @@ public class  MainActivity extends AppCompatActivity implements GoogleApiClient.
         conectarGoogleApi();
 
         if(auth.getCurrentUser() != null){
-            startActivity(new Intent(MainActivity.this,ActivityBuscar.class));
+            startActivity(new Intent(MainActivity.this,TelaPrincipalVagas.class));
         }
 
         if (AccessToken.getCurrentAccessToken() != null){
-            startActivity(new Intent(MainActivity.this,ActivityBuscar.class));
+            startActivity(new Intent(MainActivity.this,TelaPrincipalVagas.class));
         }
 
         FacebookSdk.sdkInitialize(getApplicationContext());
@@ -102,7 +97,7 @@ public class  MainActivity extends AppCompatActivity implements GoogleApiClient.
         txtCadastrar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent chamaTelaCadastro = new Intent(MainActivity.this, ActivityCadPessoa.class);
+                Intent chamaTelaCadastro = new Intent(MainActivity.this, ActivityCadastro.class);
                 startActivity(chamaTelaCadastro);
                 finish();
             }
@@ -131,7 +126,7 @@ public class  MainActivity extends AppCompatActivity implements GoogleApiClient.
                 if (auth.getCurrentUser() != null){
                     alerta("Logado com Usuário!");
                 } else {
-                    Intent chamaTelaBuscar = new Intent(MainActivity.this, ActivityBuscar.class);
+                    Intent chamaTelaBuscar = new Intent(MainActivity.this, TelaPrincipalVagas.class);
                     startActivity(chamaTelaBuscar);
                     finish();
                 }
@@ -158,7 +153,7 @@ public class  MainActivity extends AppCompatActivity implements GoogleApiClient.
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Intent chamaTelaBuscar = new Intent(MainActivity.this, ActivityBuscar.class);
+                            Intent chamaTelaBuscar = new Intent(MainActivity.this, TelaPrincipalVagas.class);
                             startActivity(chamaTelaBuscar);
                             finish();
                         } else {
@@ -196,7 +191,7 @@ public class  MainActivity extends AppCompatActivity implements GoogleApiClient.
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Intent chamaTelaBuscar = new Intent(MainActivity.this,ActivityBuscar.class);
+                            Intent chamaTelaBuscar = new Intent(MainActivity.this,TelaPrincipalVagas.class);
                             startActivity(chamaTelaBuscar);
                         }else{
                             alerta("Falha na Autenticação");
@@ -213,7 +208,7 @@ public class  MainActivity extends AppCompatActivity implements GoogleApiClient.
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // se logar, vai para a tela de busca
-                            Intent chamaTelaBuscar = new Intent(MainActivity.this,ActivityBuscar.class);
+                            Intent chamaTelaBuscar = new Intent(MainActivity.this,TelaPrincipalVagas.class);
                             startActivity(chamaTelaBuscar);
                             finish();
                         }else{

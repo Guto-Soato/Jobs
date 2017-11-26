@@ -1,28 +1,10 @@
 package st.mape.jobs;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Switch;
-import android.widget.TextView;
-
-import com.facebook.login.LoginManager;
-import com.google.firebase.auth.FirebaseAuth;
-
 /**
  * Created by Matheus Rodrigues on 03/09/2017.
  */
 
-public class ActivityBuscar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+/*public class ActivityBuscar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
 
     private Button btnBuscar;
@@ -34,7 +16,7 @@ public class ActivityBuscar extends AppCompatActivity implements NavigationView.
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tela_buscar);
+        setContentView(R.layout.tela_principal_vagas);
 
         inicializaComponentes();
         eventoClicks();
@@ -95,7 +77,7 @@ public class ActivityBuscar extends AppCompatActivity implements NavigationView.
     //Método responsável pelos eventos de clicks nos botões
     private void eventoClicks() {
 
-        btnBuscar.setOnClickListener(new View.OnClickListener() {
+        /*btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent chamaTelaMapa = new Intent(ActivityBuscar.this, MapsActivity.class);
@@ -122,3 +104,4 @@ public class ActivityBuscar extends AppCompatActivity implements NavigationView.
 
 
 }
+*/

@@ -1,30 +1,17 @@
 package st.mape.jobs;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.List;
-
-import static st.mape.jobs.MapsActivity.MAP_PERMISSION_ACCESS_FINE_LOCATION;
 /**
  * Created by Matheus Rodrigues on 29/09/2017.
  *
@@ -99,7 +86,7 @@ import static st.mape.jobs.MapsActivity.MAP_PERMISSION_ACCESS_FINE_LOCATION;
 
             });
 
-            holder.txtFooter.setText("Footer: " + posto.getCodPosto());
+            holder.txtFooter.setText("Código: " + posto.getCodPosto());
         }
 
         // Return the size of your dataset (invoked by the layout manager)

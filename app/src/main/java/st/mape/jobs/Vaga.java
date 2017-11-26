@@ -67,6 +67,6 @@ public class Vaga {
 
     @Override
     public String toString() { // Quando aparecer na lista do app, sera mostrado o cargo
-        return  cargo;
+        return  /*"\nId: " + id +*/ "\nCargo: " + cargo + "\nDesc: " + desc + "\nCNPJ: " + CNPJ + "\nSalario: " + salario +  "\nEmail: " + email + "\n";
     }
 }
