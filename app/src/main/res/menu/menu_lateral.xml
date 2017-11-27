@@ -11,10 +11,6 @@
             android:icon="@drawable/ic_account_box_black_24dp"
             android:title="Conta" />
         <item
-            android:id="@+id/nav_pesq"
-            android:icon="@drawable/ic_search_black_24dp"
-            android:title="Pesquisas" />
-        <item
             android:id="@+id/nav_vaga"
             android:icon="@drawable/ic_card_travel_black_24dp"
             android:title="Vagas" />

@@ -130,8 +130,12 @@ public class ListaVagas extends AppCompatActivity{
     //inicializa a conexão com o banco de dados e suas variaveis
     private void inicializaFirebase() {
         FirebaseApp.initializeApp(ListaVagas.this);
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseDatabase.setPersistenceEnabled(true); //permite salvar e alterar os arqs na nuvem e no app
+        if (firebaseDatabase == FirebaseDatabase.getInstance()){
+            firebaseDatabase.setPersistenceEnabled(true);   //permite salvar e alterar os arqs na nuvem e no app
+        } else {
+            firebaseDatabase = FirebaseDatabase.getInstance();
+
+        }
         databaseReference = firebaseDatabase.getReference();
 
     }

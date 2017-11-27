@@ -1,5 +1,6 @@
 package st.mape.jobs;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,21 +21,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ListaPostos extends AppCompatActivity {
 
-
-
-
-
     // variaveis recyclerView
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
+    public Context context;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_lista_posto);
-
 
         // Trecho relacionado ao RecycleView e Retrofit
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);// instancia a var. com o objeto recycler do xml
@@ -61,7 +58,7 @@ public class ListaPostos extends AppCompatActivity {
                     for(Posto p : response.body()){
                         listPosto.add(p);
                     }
-                    mAdapter = new MyAdapter(listPosto);
+                    mAdapter = new MyAdapter(ListaPostos.this, listPosto);
                     //rodar o APP e verificar qual dos 3 log esta entrando
                     Log.e("RESPOSTA","Esta no onResponse! Boa Muleke!");
                     mRecyclerView.setAdapter(mAdapter);
@@ -76,8 +73,6 @@ public class ListaPostos extends AppCompatActivity {
             }
         });
         // Fim do trecho
-
-
 
     }
 }

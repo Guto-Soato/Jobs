@@ -50,9 +50,9 @@ import java.util.List;
         }
 
         // Provide a suitable constructor (depends on the kind of dataset)
-        public MyAdapter(List<Posto> myDataset) {
+        /*public MyAdapter(List<Posto> myDataset) {
             values = myDataset;
-        }
+        }*/
 
         // Create new views (invoked by the layout manager)
         @Override
@@ -80,7 +80,7 @@ import java.util.List;
                     Intent abreMapaComRota = new Intent(contextListaPosto, MapsActivity.class);
                     postos = values.get(position);
                     verificaFinalizar = true;
-                    contextListaPosto.startActivity(abreMapaComRota);
+                   contextListaPosto.startActivity(abreMapaComRota);
 
                 }
 
