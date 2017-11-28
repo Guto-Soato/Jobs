@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\Matheus Rodrigues\AndroidStudioProjects\Jobs3\Jobs.iml" filepath="C:\Users\Matheus Rodrigues\AndroidStudioProjects\Jobs3\Jobs.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Jobs3.iml" filepath="$PROJECT_DIR$/Jobs3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Jobs.iml" filepath="$PROJECT_DIR$/Jobs.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/facebook/facebook.iml" filepath="$PROJECT_DIR$/facebook/facebook.iml" />
       <module fileurl="file://$PROJECT_DIR$/facebook-android-sdk-4.26.0/facebook-android-sdk-4.26.0.iml" filepath="$PROJECT_DIR$/facebook-android-sdk-4.26.0/facebook-android-sdk-4.26.0.iml" />

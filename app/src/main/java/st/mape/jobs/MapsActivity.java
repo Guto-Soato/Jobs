@@ -2,6 +2,7 @@ package st.mape.jobs;
 
 import android.*;
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -13,6 +14,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
@@ -39,12 +41,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     public static final int MAP_PERMISSION_ACCESS_FINE_LOCATION = 9999;
-    private FragmentManager fragmentManager;
     private FirebaseAuth auth;
-    private LocationManager locManager;
     private iRetrofitTCU apiPostos;
-    private List<String> listPostos = new ArrayList<String>();
-    private List<Posto> listPosto = new ArrayList<Posto>();
+    private double latitude;
+    private double longitude;
+    private double latp;
+    private double longp;
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://github.com//AppCivicoPlataforma/AppCivico/")// iRetrofitTCU.ENDPOINT
@@ -60,100 +62,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
         apiPostos = retrofit.create(iRetrofitTCU.class);
 
-        locManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        if (locManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
-            locManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, new LocationListener() {
-                @Override
-                public void onLocationChanged(Location location) {
-                    double lat = location.getLatitude();
-                    double lon = location.getLongitude();
-                    LatLng latLon = new LatLng(lat,lon);
-                    mMap.addMarker(new MarkerOptions().position(latLon).title("Você está aqui!"));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLon, 10.2f));
-                    Call<List<Posto>> callListPostoSINE = apiPostos.listPosto(String.valueOf(lat), String.valueOf(lon), "500");
-                    callListPostoSINE.enqueue(new Callback<List<Posto>>() {
-                        @Override
-                        public void onResponse(Call<List<Posto>> call, Response<List<Posto>> response) {
-                            if (response.isSuccessful()){
-                                for (Posto posto : response.body()){
-                                    listPostos.add(posto.getNome());
-                                    listPosto.add(posto);
-                                    double latp = posto.getLatitude();
-                                    double lonp = posto.getLongitude();
-                                    String nomep = posto.getNome();
-                                    mMap.addMarker(new MarkerOptions().position(new LatLng(latp, lonp)).title(nomep));
-                                }
-                            }
-                        }
+        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        longitude = location.getLongitude();
+        latitude = location.getLatitude();
+    }
 
-                        @Override
-                        public void onFailure(Call<List<Posto>> call, Throwable t) {
-
-                        }
-                    });
-                }
-
-                @Override
-                public void onStatusChanged(String s, int i, Bundle bundle) {
-
-                }
-
-                @Override
-                public void onProviderEnabled(String s) {
-
-                }
-
-                @Override
-                public void onProviderDisabled(String s) {
-
-                }
-            });
-        } else if (locManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
-            locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
-                @Override
-                public void onLocationChanged(Location location) {
-                    double lat = location.getLatitude();
-                    double lon = location.getLongitude();
-                    LatLng latLon = new LatLng(lat,lon);
-                    Geocoder geocoder = new Geocoder(getApplicationContext());
-                    try {
-                        List<Address> addresses = geocoder.getFromLocation(lat, lon, 1);
-                        String str = addresses.get(0).getLocality()+",";
-                        str += addresses.get(0).getCountryName();
-                        mMap.addMarker(new MarkerOptions().position(latLon).title(str));
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLon, 10.2f));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                @Override
-                public void onStatusChanged(String s, int i, Bundle bundle) {
-
-                }
-
-                @Override
-                public void onProviderEnabled(String s) {
-
-                }
-
-                @Override
-                public void onProviderDisabled(String s) {
-
-                }
-            });
-        }
+    public MapsActivity(double latitudep, double longitudep) {
+        latp = latitudep;
+        longp = longitudep;
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-
+        LatLng latLng = new LatLng(latitude, longitude);
+        LatLng latLngp = new LatLng(latp, longp);
+        mMap.addMarker(new MarkerOptions().position(latLng).title("Você está aqui"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10.2f));
+        mMap.addMarker(new MarkerOptions().position(latLngp).title("Posto"));
     }
 }

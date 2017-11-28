@@ -26,6 +26,8 @@ import java.util.List;
         public static Posto postos;
         public static LatLng tracaOrigem;
         public static boolean verificaFinalizar = false;
+        public double latitudePosto;
+        public double longitudePosto;
 
         // Fornece uma referência para as views de cada item de dados
         // Complex data items may need more than one view per item, and
@@ -49,11 +51,6 @@ import java.util.List;
             values = myDataset;
         }
 
-        // Provide a suitable constructor (depends on the kind of dataset)
-        /*public MyAdapter(List<Posto> myDataset) {
-            values = myDataset;
-        }*/
-
         // Create new views (invoked by the layout manager)
         @Override
         public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -73,6 +70,9 @@ import java.util.List;
             // - replace the contents of the view with that element
 
             final Posto posto = values.get(position);
+            latitudePosto = posto.getLatitude();
+            longitudePosto = posto.getLongitude();
+            MapsActivity mapa = new MapsActivity(latitudePosto, longitudePosto);
             holder.txtHeader.setText(posto.getNome());
             holder.txtHeader.setOnClickListener(new OnClickListener() {
                 @Override
@@ -87,6 +87,15 @@ import java.util.List;
             });
 
             holder.txtFooter.setText("Código: " + posto.getCodPosto());
+            holder.txtFooter.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent abreMapaComRota = new Intent(contextListaPosto, MapsActivity.class);
+                    postos = values.get(position);
+                    verificaFinalizar = true;
+                    contextListaPosto.startActivity(abreMapaComRota);
+                }
+            });
         }
 
         // Return the size of your dataset (invoked by the layout manager)

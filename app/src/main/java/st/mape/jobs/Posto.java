@@ -17,7 +17,7 @@ public class Posto {
     private String municipio;
     private String uf;
     @SerializedName("lat") private Float latitude;
-    @SerializedName("lon") private Float longitude;
+    @SerializedName("long") private Float longitude;
 
 
     public String getCodPosto() {
