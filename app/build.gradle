@@ -38,6 +38,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-maps:10.2.6'
     compile 'com.google.android.gms:play-services-location:10.2.6'
     compile 'com.facebook.android:facebook-android-sdk:[4,5)' //4.14.0
+    compile 'com.facebook.android:facebook-login:[4,5)'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     testCompile 'junit:junit:4.12'

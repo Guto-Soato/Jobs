@@ -18,7 +18,7 @@ public interface iRetrofitTCU {
     @GET("rest/emprego")
     Call<List<Posto>> callListPostoSINE(); // getPosto(@Path("codPosto") String codPosto
 
-    @GET("rest/emprego/latitude/{latitude}/long/{long}/raio/{raio}")
+    @GET("rest/emprego/latitude/{latitude}/longitude/{long}/raio/{raio}")
     Call<List<Posto>> listPosto(@Path("latitude") String lat,@Path("long") String lon,@Path("raio") String raio);
 
 }

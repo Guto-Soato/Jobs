@@ -41,19 +41,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     public static final int MAP_PERMISSION_ACCESS_FINE_LOCATION = 9999;
-    private FirebaseAuth auth;
-    private iRetrofitTCU apiPostos;
+
+    private iRetrofitTCU apiPosto;
+
     private double latitude;
     private double longitude;
-    private double latp;
-    private double longp;
+    public double latp;
+    public double longp;
 
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("https://github.com//AppCivicoPlataforma/AppCivico/")// iRetrofitTCU.ENDPOINT
+            .baseUrl("http://mobile-aceite.tcu.gov.br/mapa-da-saude/")// iRetrofitTCU.ENDPOINT
             .addConverterFactory(GsonConverterFactory.create())
             .build();
-
-    iRetrofitTCU service = retrofit.create(iRetrofitTCU.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +61,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-        apiPostos = retrofit.create(iRetrofitTCU.class);
 
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -74,19 +71,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         latitude = location.getLatitude();
     }
 
-    public MapsActivity(double latitudep, double longitudep) {
-        latp = latitudep;
-        longp = longitudep;
-    }
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        iRetrofitTCU service = retrofit.create(iRetrofitTCU.class);
+
+        Call<List<Posto>> callListPostoSINE = service.listPosto(String.valueOf(latitude), String.valueOf(longitude), "500"); //getPosto("2334007-0")
+        callListPostoSINE.enqueue(new retrofit2.Callback<List<Posto>>() {
+            @Override
+            public void onResponse(Call<List<Posto>> call, Response<List<Posto>> response) {
+                List<Posto> listPosto = new ArrayList<Posto>();
+                if(response.isSuccessful()){
+                    for(Posto posto : response.body()){
+                        listPosto.add(posto);
+                        for (int i = 0; i < listPosto.size(); i++) {
+                            latp = listPosto.get(i).getLatitude();
+                            longp = listPosto.get(i).getLongitude();
+                            String nome = listPosto.get(i).getNome();
+                            LatLng latLngp = new LatLng(latp, longp);
+                            mMap.addMarker(new MarkerOptions().position(latLngp).title(nome));
+                        }
+                    }
+                    //rodar o APP e verificar qual dos 3 log esta entrando
+                    Log.e("RESPOSTA","Esta no onResponse! Boa Muleke!");
+                }else{
+                    Log.e("RESPOSTA","ERRO esta no else");
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Posto>> call, Throwable t) {
+                Log.e("RESPOSTA","ERRO esta no onFailure");
+            }
+        });
+
         LatLng latLng = new LatLng(latitude, longitude);
-        LatLng latLngp = new LatLng(latp, longp);
         mMap.addMarker(new MarkerOptions().position(latLng).title("Você está aqui"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10.2f));
-        mMap.addMarker(new MarkerOptions().position(latLngp).title("Posto"));
     }
 }

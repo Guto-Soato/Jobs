@@ -24,10 +24,7 @@ import java.util.List;
         public Context contextListaPosto;
 
         public static Posto postos;
-        public static LatLng tracaOrigem;
         public static boolean verificaFinalizar = false;
-        public double latitudePosto;
-        public double longitudePosto;
 
         // Fornece uma referência para as views de cada item de dados
         // Complex data items may need more than one view per item, and
@@ -70,9 +67,6 @@ import java.util.List;
             // - replace the contents of the view with that element
 
             final Posto posto = values.get(position);
-            latitudePosto = posto.getLatitude();
-            longitudePosto = posto.getLongitude();
-            MapsActivity mapa = new MapsActivity(latitudePosto, longitudePosto);
             holder.txtHeader.setText(posto.getNome());
             holder.txtHeader.setOnClickListener(new OnClickListener() {
                 @Override
@@ -80,8 +74,7 @@ import java.util.List;
                     Intent abreMapaComRota = new Intent(contextListaPosto, MapsActivity.class);
                     postos = values.get(position);
                     verificaFinalizar = true;
-                   contextListaPosto.startActivity(abreMapaComRota);
-
+                    contextListaPosto.startActivity(abreMapaComRota);
                 }
 
             });
