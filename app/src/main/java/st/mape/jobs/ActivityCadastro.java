@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -12,8 +13,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Created by Ramalho on 11/09/2017.
@@ -27,6 +31,8 @@ public class ActivityCadastro extends AppCompatActivity {
     private ProgressDialog dialog;
 
     private FirebaseAuth mAuth;
+    private FirebaseDatabase dbUser;
+    private DatabaseReference dbRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -35,8 +41,15 @@ public class ActivityCadastro extends AppCompatActivity {
 
         // recebe o click do botao Pessoa, na tela de cadastro
         inicializaComponentes();
+        inicializaFirebase();
         eventoClicks();
 
+    }
+
+    private void inicializaFirebase() {
+        FirebaseApp.initializeApp(ActivityCadastro.this);
+        dbUser = FirebaseDatabase.getInstance();
+        dbRef = dbUser.getReference();
     }
 
     //Método responsável pelos eventos de clicks nos botões
@@ -50,6 +63,7 @@ public class ActivityCadastro extends AppCompatActivity {
                 String confsenha = editConfSenha.getText().toString().trim();
                 if (confsenha.equals(senha)){
                     cadastraUsuario(email, senha);
+                    atualiza();
                     dialog = ProgressDialog.show(ActivityCadastro.this,"Jobs","Realizando cadastro, aguarde", false, true);
                     dialog.setIcon(R.mipmap.ic_launcher_round);
                     dialog.setCancelable(false);
@@ -114,6 +128,11 @@ public class ActivityCadastro extends AppCompatActivity {
         Toast.makeText(ActivityCadastro.this,s,Toast.LENGTH_SHORT).show();
     }
 
+    private void atualiza() {
+        Pessoa p = new Pessoa();
+        p.setNome(editPessoa.getText().toString());
+        dbRef.child("Perfil").child(editPessoa.getText().toString()).setValue(p);
+    }
 
     // Método p inicializar as variaveis com os campos da tela
     private void inicializaComponentes(){

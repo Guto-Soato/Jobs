@@ -12,7 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.facebook.login.LoginManager;
 import com.google.firebase.FirebaseApp;
@@ -33,6 +35,7 @@ import java.util.List;
 public class TelaPrincipalVagas extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     ListView listV_vagas;
+    private TextView emailMenu, nomeMenu;
 
     //variaveis p conexao c o banco
     FirebaseDatabase firebaseDatabase;
@@ -42,6 +45,7 @@ public class TelaPrincipalVagas extends AppCompatActivity implements NavigationV
     //relacionado a parte do select
     private List<Vaga> listV = new ArrayList<Vaga>();
     private ArrayAdapter<Vaga> arrayAdapterV;
+    private List<Pessoa> listPessoa = new ArrayList<Pessoa>();
 
     Vaga vagaSelecionada;
 
@@ -56,6 +60,7 @@ public class TelaPrincipalVagas extends AppCompatActivity implements NavigationV
         inicializaComponentes();
         inicializaFirebase();
         eventoLista();
+        eventoFirebase();
 
         auth = FirebaseAuth.getInstance();
 
@@ -109,6 +114,7 @@ public class TelaPrincipalVagas extends AppCompatActivity implements NavigationV
         if (id == R.id.nav_conta) {
             Intent chamaPerfil = new Intent(TelaPrincipalVagas.this, Perfil.class);
             startActivity(chamaPerfil);
+            finish();
         }
         if (id == R.id.nav_vaga) {
             Intent chamaVaga = new Intent(TelaPrincipalVagas.this, ListaVagas.class);
@@ -161,7 +167,28 @@ public class TelaPrincipalVagas extends AppCompatActivity implements NavigationV
         }
     }
 
+    private void eventoFirebase(){
+        databaseReference.child("Perfil").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnap:dataSnapshot.getChildren()){
+                    Pessoa p = dataSnap.getValue(Pessoa.class);
+                    nomeMenu.setText(p.getNome().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     private void inicializaComponentes() {
         listV_vagas = (ListView)findViewById(R.id.listV_vagas);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        nomeMenu = (TextView)headerView.findViewById(R.id.txtNomeMenu);
+        emailMenu = (TextView)headerView.findViewById(R.id.txtEmailMenu);
     }
 }
