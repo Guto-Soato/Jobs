@@ -40,12 +40,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    public static final int MAP_PERMISSION_ACCESS_FINE_LOCATION = 9999;
+    public static final int MAP_PERMISSION_ACCESS_COURSE_LOCATION = 9999;
 
     private iRetrofitTCU apiPosto;
 
-    private double latitude;
-    private double longitude;
+    LocationManager locManager;
+
     public double latp;
     public double longp;
 
@@ -61,52 +61,130 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        longitude = location.getLongitude();
-        latitude = location.getLatitude();
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        iRetrofitTCU service = retrofit.create(iRetrofitTCU.class);
+        locManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
-        Call<List<Posto>> callListPostoSINE = service.listPosto(String.valueOf(latitude), String.valueOf(longitude), "500"); //getPosto("2334007-0")
-        callListPostoSINE.enqueue(new retrofit2.Callback<List<Posto>>() {
-            @Override
-            public void onResponse(Call<List<Posto>> call, Response<List<Posto>> response) {
-                List<Posto> listPosto = new ArrayList<Posto>();
-                if(response.isSuccessful()){
-                    for(Posto posto : response.body()){
-                        listPosto.add(posto);
-                        for (int i = 0; i < listPosto.size(); i++) {
-                            latp = listPosto.get(i).getLatitude();
-                            longp = listPosto.get(i).getLongitude();
-                            String nome = listPosto.get(i).getNome();
-                            LatLng latLngp = new LatLng(latp, longp);
-                            mMap.addMarker(new MarkerOptions().position(latLngp).title(nome));
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+            ActivityCompat.requestPermissions( this, new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION}, MAP_PERMISSION_ACCESS_COURSE_LOCATION);
+        } else {
+            getLastLocation();
+            getLocation();
+
+
+
+            Location lastKnownLocation = locManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+        }
+    }
+
+    private void getLastLocation() {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
+            Location lastKnownLocation = locManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            LatLng me = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(me).title("Você está aqui!"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(me, 10));
+
+            iRetrofitTCU service = retrofit.create(iRetrofitTCU.class);
+
+            Call<List<Posto>> callListPostoSINE = service.listPosto(String.valueOf(me.latitude), String.valueOf(me.longitude), "500"); //getPosto("2334007-0")
+            callListPostoSINE.enqueue(new retrofit2.Callback<List<Posto>>() {
+                @Override
+                public void onResponse(Call<List<Posto>> call, Response<List<Posto>> response) {
+                    List<Posto> listPosto = new ArrayList<Posto>();
+                    if(response.isSuccessful()){
+                        for(Posto posto : response.body()){
+                            listPosto.add(posto);
+                            for (int i = 0; i < listPosto.size(); i++) {
+                                latp = listPosto.get(i).getLatitude();
+                                longp = listPosto.get(i).getLongitude();
+                                String nome = listPosto.get(i).getNome();
+                                LatLng latLngp = new LatLng(latp, longp);
+                                mMap.addMarker(new MarkerOptions().position(latLngp).title(nome));
+                            }
                         }
+                        //rodar o APP e verificar qual dos 3 log esta entrando
+                        Log.e("RESPOSTA","Esta no onResponse! Boa Muleke!");
+                    }else{
+                        Log.e("RESPOSTA","ERRO esta no else");
                     }
-                    //rodar o APP e verificar qual dos 3 log esta entrando
-                    Log.e("RESPOSTA","Esta no onResponse! Boa Muleke!");
-                }else{
-                    Log.e("RESPOSTA","ERRO esta no else");
                 }
-            }
-            @Override
-            public void onFailure(Call<List<Posto>> call, Throwable t) {
-                Log.e("RESPOSTA","ERRO esta no onFailure");
-            }
-        });
+                @Override
+                public void onFailure(Call<List<Posto>> call, Throwable t) {
+                    Log.e("RESPOSTA","ERRO esta no onFailure");
+                }
+            });
+        }
+    }
 
-        LatLng latLng = new LatLng(latitude, longitude);
-        mMap.addMarker(new MarkerOptions().position(latLng).title("Você está aqui"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10.2f));
+    private void getLocation() {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
+            LocationListener locationListener = new LocationListener() {
+                public void onLocationChanged(Location location) {
+                    LatLng me = new LatLng(location.getLatitude(), location.getLongitude());
+                    mMap.addMarker(new MarkerOptions().position(me).title("Estou Aqui!!!"));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(me, 10));
+
+                    iRetrofitTCU service = retrofit.create(iRetrofitTCU.class);
+
+                    Call<List<Posto>> callListPostoSINE = service.listPosto(String.valueOf(me.latitude), String.valueOf(me.longitude), "500"); //getPosto("2334007-0")
+                    callListPostoSINE.enqueue(new retrofit2.Callback<List<Posto>>() {
+                        @Override
+                        public void onResponse(Call<List<Posto>> call, Response<List<Posto>> response) {
+                            List<Posto> listPosto = new ArrayList<Posto>();
+                            if(response.isSuccessful()){
+                                for(Posto posto : response.body()){
+                                    listPosto.add(posto);
+                                    for (int i = 0; i < listPosto.size(); i++) {
+                                        latp = listPosto.get(i).getLatitude();
+                                        longp = listPosto.get(i).getLongitude();
+                                        String nome = listPosto.get(i).getNome();
+                                        LatLng latLngp = new LatLng(latp, longp);
+                                        mMap.addMarker(new MarkerOptions().position(latLngp).title(nome));
+                                    }
+                                }
+                                //rodar o APP e verificar qual dos 3 log esta entrando
+                                Log.e("RESPOSTA","Esta no onResponse! Boa Muleke!");
+                            }else{
+                                Log.e("RESPOSTA","ERRO esta no else");
+                            }
+                        }
+                        @Override
+                        public void onFailure(Call<List<Posto>> call, Throwable t) {
+                            Log.e("RESPOSTA","ERRO esta no onFailure");
+                        }
+                    });
+                }
+
+                public void onStatusChanged(String provider, int status, Bundle extras) {
+                }
+
+                public void onProviderEnabled(String provider) {
+                }
+
+                public void onProviderDisabled(String provider) {
+                }
+            };
+            locManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case MAP_PERMISSION_ACCESS_COURSE_LOCATION: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    getLastLocation();
+                    getLocation();
+                } else {
+                    //Permissão negada
+                }
+                return;
+            }
+        }
     }
 }
