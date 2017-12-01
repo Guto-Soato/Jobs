@@ -43,6 +43,10 @@ import java.util.List;
             }
         }
 
+        public MyAdapter () {
+
+        }
+
         public MyAdapter (Context contextListaPosto, List<Posto> myDataset) {
             this.contextListaPosto = contextListaPosto;
             values = myDataset;

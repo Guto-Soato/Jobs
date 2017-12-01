@@ -62,17 +62,17 @@ public class ActivityCadastro extends AppCompatActivity {
                 String senha = editSenha.getText().toString().trim();
                 String confsenha = editConfSenha.getText().toString().trim();
                 if (confsenha.equals(senha)){
-                    cadastraUsuario(email, senha);
-                    atualiza();
                     dialog = ProgressDialog.show(ActivityCadastro.this,"Jobs","Realizando cadastro, aguarde", false, true);
                     dialog.setIcon(R.mipmap.ic_launcher_round);
                     dialog.setCancelable(false);
+                    cadastraUsuario(email, senha);
+                    atualiza();
 
                     new Thread() {
                         public void run () {
                             try {
-                                Thread.sleep(100000);
-                                dialog.dismiss();
+                                Thread.sleep(10000);
+                                //dialog.dismiss();
                             } catch (Exception e) {
 
                             }
@@ -107,6 +107,7 @@ public class ActivityCadastro extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task){
                         if (task.isSuccessful()){
+                            dialog.dismiss();
                             alerta("Cadastro realizado com sucesso!");
                             Intent chamaTelaBuscar = new Intent(ActivityCadastro.this,TelaPrincipalVagas.class);
                             startActivity(chamaTelaBuscar);
