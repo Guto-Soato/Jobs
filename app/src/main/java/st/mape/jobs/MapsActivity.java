@@ -120,7 +120,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void getLocation() {
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
+       if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
             LocationListener locationListener = new LocationListener() {
                 public void onLocationChanged(Location location) {
                     LatLng me = new LatLng(location.getLatitude(), location.getLongitude());
@@ -146,7 +146,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     }
                                 }
                                 //rodar o APP e verificar qual dos 3 log esta entrando
-                                Log.e("RESPOSTA","Esta no onResponse! Boa Muleke!");
+                                Log.e("RESPOSTA","Esta no onResponse! Boa Cara!");
                             }else{
                                 Log.e("RESPOSTA","ERRO esta no else");
                             }
@@ -167,8 +167,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 public void onProviderDisabled(String provider) {
                 }
             };
-            locManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-        }
+            locManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 600000, 0, locationListener);
+       }
     }
 
     @Override
