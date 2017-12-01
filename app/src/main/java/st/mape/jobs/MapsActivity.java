@@ -75,8 +75,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             getLastLocation();
             getLocation();
 
-
-
             Location lastKnownLocation = locManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
         }
